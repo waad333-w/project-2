@@ -19,13 +19,22 @@ router.post("/sign-up", async (req, res) => {
     return res.send("Password and Confirm Password must match");
   }
 
+  if (req.body.role !== "photographer" && req.body.role !=="user"){
+    return res.send("Please choose a valid account type.");
+  }
+
   const hashedPassword = bcrypt.hashSync(req.body.password, 10);
   req.body.password = hashedPassword;
 
   // validation logic
 
-  const user = await User.create(req.body);
-  res.redirect("/auth/sign-in");
+  const user = await User.create({
+    username: req.body.username,
+    password: req.body.password,
+    role: req.body.role
+});
+
+res.redirect("/auth/sign-in");
 });
 
 
@@ -58,7 +67,8 @@ router.post("/sign-in", async (req, res) => {
   // If there is other data you want to save to `req.session.user`, do so here!
   req.session.user = {
     username: userInDatabase.username,
-    _id: userInDatabase._id
+    _id: userInDatabase._id,
+    role: userInDatabase.role
   };
 
   res.redirect("/");
