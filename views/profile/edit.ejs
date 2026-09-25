@@ -88,5 +88,15 @@
                         Save Profile
                     </button>
             </form>
+
+
+            <% if(profileUser.role === "photographer"){ %>
+
+                <h2>Photographer Options</h2>
+                <a href="/posts/new">
+                    Create New Post
+                </a>
+
+            <% } %>
 </body>
 </html>

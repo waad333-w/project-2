@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Post</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <h1>Create New Post</h1>
+
+    <form action="/posts" method="POST">
+
+        <label for="image">
+            Image URL:
+        </label>
+
+        <input
+        type="text"
+        name="image"
+        id="image"
+        required
+        >
+
+        <br><br>
+
+        <label for="caption">
+            Caption:
+        </label>
+
+        <textarea
+        name="caption"
+        id="caption"
+        rows="5"
+        cols="40"
+        ></textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Create Post
+        </button>
+
+
+    </form>
+
+
+</body>
+</html>
