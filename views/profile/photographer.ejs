@@ -37,5 +37,33 @@
         <%= photographer.style || "No style added yet." %>
     </p>
 
+    <h2>Portfolio</h2>
+
+    <% if(posts.length === 0){%>
+
+        <p>
+            No posts yet.
+        </p>
+    <% } %>
+
+    <% posts.forEach((post)=>{ %>
+
+        <div>
+
+            <img 
+            src="<%= post.image %>"
+            alt="Photography"
+            width="300"
+            >
+
+            <p>
+                <%= post.caption %>
+            </p>
+
+        </div>
+
+        <hr>
+    <% }) %>
+
 </body>
 </html>

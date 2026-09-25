@@ -1,6 +1,9 @@
 const express = require("express")
 const router = express.Router()
+
+
 const User = require("../models/User.js")
+const Post = require("../models/Post.js")
 
 
 router.get("/", async (req, res) => {
@@ -67,8 +70,14 @@ router.get("/:userId",async(req,res)=>{
         if(!photographer){
             return res.send("Photographer not found.")
         }
+
+        const posts = await Post.find({
+            photographer:req.params.userId
+        })
+
         res.render("profile/photographer.ejs",{
-            photographer:photographer
+            photographer:photographer,
+            posts:posts
         })
 
     }catch(error){
