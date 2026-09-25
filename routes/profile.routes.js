@@ -21,8 +21,13 @@ router.get("/", async (req, res) => {
             return res.send("User not found.")
         }
 
+        const posts = await Post.find({
+            photographer: req.session.user._id
+        })
+
         res.render("profile/edit.ejs", {
-            profileUser: user
+            profileUser: user,
+            posts:posts
         })
     }
 

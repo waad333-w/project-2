@@ -60,6 +60,21 @@
                 <%= post.caption %>
             </p>
 
+        <% if(user && user._id.toString() === photographer._id.toString()){ %>
+
+            <a href="/posts/<%= post._id %>/edit">
+                Edit
+            </a>
+
+
+            <form action="/posts/<%= post._id %>?_method=DELETE"method="POST">
+        
+                <button type="submit">
+                    Delete
+                </button>
+        </form>
+
+        <% } %>
         </div>
 
         <hr>

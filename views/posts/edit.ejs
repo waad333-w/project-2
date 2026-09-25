@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <h1>Edit Post</h1>
+
+    <form action="/posts/<%= post._id %>?_method=PUT" method="POST">
+
+        <label for="image">
+            Image URL:
+        </label>
+
+        <input
+        type="text"
+        name="image"
+        id="image"
+        value="<%= post.image %>"
+        required
+        >
+
+        <br><br>
+
+        <label for="caption">
+            Caption:
+        </label>
+
+        <textarea
+        name="caption"
+        id="caption"
+        rows="5"
+        cols="40"
+        ><%= post.caption %></textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Update Post
+        </button>
+    </form>
+</body>
+</html>
