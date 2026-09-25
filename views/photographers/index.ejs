@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographers</title>
+</head>
+<body>
+    <%- include("../partials/navbar") %>
+
+    <h1>Photographers</h1>
+    <% photographers.forEach((photographer)=>{ %>
+
+        <div>
+            <% if(photographer.profilePic){ %>
+
+                <img
+                src="<%= photographer.profilePic %>"
+                alt="Profile Picture"
+                width="100"
+                >
+            <% } %>
+
+    <h2><%= photographer.username %></h2>
+
+    <p>
+        <%= photographer.style || "Photography style not added yet." %>
+    </p>
+
+    <p>
+        <%= photographer.bio || "No bio yet." %>
+    </p>
+
+    <a href="/profile/<%= photographer._id %>">
+        View Profile
+    </a>
+
+        </div>
+
+        <hr>
+
+    <% }) %>
+
+</body>
+</html>
