@@ -59,4 +59,23 @@ router.put("/", async (req, res) => {
 })
 
 
+router.get("/:userId",async(req,res)=>{
+
+    try{
+        const photographer = await User.findById(req.params.userId)
+
+        if(!photographer){
+            return res.send("Photographer not found.")
+        }
+        res.render("profile/photographer.ejs",{
+            photographer:photographer
+        })
+
+    }catch(error){
+        console.log(error)
+        res.send("Could not load photographer profile.")
+    }
+})
+
+
 module.exports = router

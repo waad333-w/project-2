@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographer Profile</title>
+</head>
+<body>
+    <%- include("../partials/navbar") %>
+
+    <h1>Photographer Profile</h1>
+
+    <% if(photographer.profilePic){ %>
+
+        <img
+        src="<%= photographer.profilePic %>"
+        alt="Profile Picture"
+        width="150"
+        >
+    <% } %>
+
+
+    <h2><%= photographer.username %></h2>
+
+    <p>
+        <strong>Account Type:</strong>
+        <%= photographer.role %>
+    </p>
+
+    <p>
+        <strong>Bio:</strong>
+        <%= photographer.bio || "No bio yet." %>
+    </p>
+
+    <p>
+        <strong>Photography Style:</strong>
+        <%= photographer.style || "No style added yet." %>
+    </p>
+
+</body>
+</html>
