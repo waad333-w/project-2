@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+</head>
+<body>
+    <%- include("../partials/navbar") %>
+
+    <h1>My Profile</h1>
+
+    <% if(profileUser.profilePic){ %>
+
+        <img
+        src="<%= profileUser.profilePic %>"
+        alt="Profile Picture"
+        width="150"
+        >
+
+        <% } %>
+
+        <h2><%= profileUser.username %></h2>
+
+        <p>
+            <strong>Account Type:</strong> <%= profileUser.role %>
+        </p>
+
+        <p>
+            <strong>Bio</strong> <%= profileUser.bio || "No bio yet." %>
+        </p>
+
+        <% if(profileUser.role === "photographer"){ %>
+            <p>
+                <strong>Photography Style:</strong>
+                <%= profileUser.Style || "No style added yet." %>
+            </p>
+            <% } %>
+
+            <h2>Edit Profile</h2>
+
+            <form action="/profile?_method=PUT" method="POST">
+
+                <label for="profilePic">
+                    Profile Picture URL:
+                </label>
+
+                <input
+                type="text"
+                name="profilePic"
+                id="profilePic"
+                value="<%= profileUser.profilePic %>"
+                >
+
+                <br><br>
+
+                <label for="bio">
+                    Bio:
+                </label>
+                
+                <textarea 
+                name="bio" 
+                id="bio"
+                rows="5"
+                cols="40"
+                ><%= profileUser.bio %></textarea>
+
+                <br><br>
+
+                <% if(profileUser.role === "photographer"){ %>
+
+                    <label for="style">
+                        Photography Style:
+                    </label>
+
+                    <input
+                    type="text"
+                    name="style"
+                    id="style"
+                    value="<%= profileUser.style %>"
+                    >
+
+                    <br><br>
+
+                    <% } %>
+
+                    <button type="submit">
+                        Save Profile
+                    </button>
+            </form>
+</body>
+</html>
