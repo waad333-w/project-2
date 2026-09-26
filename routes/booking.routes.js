@@ -176,4 +176,33 @@ router.put("/:bookingId/reject",async(req,res)=>{
     }
 
 })
+
+
+
+router.get("/my-bookings",async(req,res)=>{
+
+    if(!req.session.user){
+        return res.redirect("/auth/sign-in")
+    }
+    
+    if(req.session.user.role !== "user"){
+        return res.send("Only users can view their bookings.")
+    }
+
+    try{
+        const bookings = await Booking.find({
+            user: req.session.user._id
+        }).populate("photographer")
+
+        res.render("bookings/my-bookings.ejs",{
+            bookings:bookings
+        })
+
+    }catch(error){
+
+        console.log(error)
+        res.send("Could not load your bookings.")
+    }
+
+})
 module.exports = router
