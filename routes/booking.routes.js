@@ -55,7 +55,7 @@ router.post("/",async(req,res)=>{
             date: req.body.date,
             message: req.body.message
         })
-        res.redirect("/profile")
+        res.redirect("/bookings/my-bookings")
 
 
     }catch(error){
