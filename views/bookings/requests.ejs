@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Requests</title>
+</head>
+<body>
+    <%- include("../partials/navbar") %>
+
+    <h1>Booking Requests</h1>
+
+    <% if(bookings.length === 0){ %>
+
+        <p>
+            You have no booking requests.
+        </p>
+        <% } %>
+
+    <% bookings.forEach((booking)=>{ %>
+
+        <div>
+
+            <h2>
+                Request from:
+                <%= booking.user.username %>
+            </h2>
+
+            <p>
+                <strong>Date:</strong>
+                <%= booking.date.toDateString() %>
+            </p>
+
+            <p>
+                <strong>Message:</strong>
+                <%= booking.message || "No message." %>
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                <%= booking.status %>
+            </p>
+        </div>
+
+        <hr>
+
+        <% }) %>
+
+</body>
+</html>

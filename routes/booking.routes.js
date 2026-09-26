@@ -2,7 +2,6 @@ const express = require("express")
 const router = express.Router()
 
 const Booking = require("../models/Booking.js")
-const user = require("../models/User.js")
 const User = require("../models/User.js")
 
 
@@ -64,6 +63,34 @@ router.post("/",async(req,res)=>{
         console.log(error)
         res.send("Could not create booking.")
     }
+})
+
+
+
+router.get("/requests",async(req,res)=>{
+
+    if(!req.session.user){
+        return res.redirect("/auth/sign-in")
+    }
+
+    if(req.session.user.role !== "photographer"){
+        return res.send("Only photographers can view booking requests.")
+    }
+
+    try{
+
+        const bookings = await Booking.find({
+            photographer: req.session.user._id}).populate("user")
+
+        res.render("bookings/requests.ejs",{
+            bookings:bookings
+        })
+
+    }catch(error){
+        console.log(error)
+        res.send("Could not load booking requests.")
+    }
+
 })
 
 module.exports = router
