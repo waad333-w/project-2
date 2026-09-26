@@ -80,5 +80,15 @@
         <hr>
     <% }) %>
 
+    <% if(user && user.role === "user"){ %>
+
+        <h2>Book This Photographer</h2>
+
+        <a href="/bookings/new/<%= photographer._id %>">
+            Book Photographer
+        </a>
+
+        <% } %>
+
 </body>
 </html>

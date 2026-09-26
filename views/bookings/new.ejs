@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Photographer</title>
+</head>
+<body>
+    <%- include("../partials/navbar") %>
+
+
+    <h1>Book <%= photographer.username %></h1>
+
+    <form action="/bookings" method="POST">
+
+        <input
+        type="hidden"
+        name="photographer"
+        value="<%= photographer._id %>"
+        >
+
+        <label for="date">
+            Date:
+        </label>
+
+        <input 
+        type="date"
+        name="date"
+        id="date"
+        required
+        >
+
+        <br><br>
+
+        <label for="message">
+            Message:
+        </label>
+
+        <br>
+
+        <textarea
+        name="message"
+        id="message"
+        rows="5"
+        cols="40"
+        placeholder="Tell the photographerabout your bokking...">
+        </textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Send Booking Request
+        </button>
+    </form>
+</body>
+</html>
