@@ -93,4 +93,87 @@ router.get("/requests",async(req,res)=>{
 
 })
 
+
+router.put("/:bookingId/accept",async(req,res)=>{
+
+    if(!req.session.user){
+        return res.redirect("/auth/sign-in")
+    }
+
+    if(req.session.user.role !== "photographer"){
+        return res.send("Only photographers can accept bookings.")
+    }
+
+    try{
+
+        const booking = await Booking.findById(req.params.bookingId)
+
+        if(!booking){
+            return res.send("Booking not found.")
+        }
+
+        if(
+            booking.photographer.toString() !== req.session.user._id.toString()){
+                return res.send("You can only manage your own bookings.")
+            }
+
+        await Booking.findByIdAndUpdate(
+            req.params.bookingId,
+            {
+                status: "Accepted"
+            }
+        )
+
+        res.redirect("/bookings/requests")
+        
+
+    }catch(error){
+        console.log(error)
+        res.send("Could not accept booking.")
+    }
+
+})
+
+
+
+
+router.put("/:bookingId/reject",async(req,res)=>{
+
+    if(!req.session.user){
+        return res.redirect("/auth/sign-in")
+    }
+
+    if(req.session.user.role !== "photographer"){
+        return res.send("Only photographers can reject bookings.")
+    }
+
+    try{
+
+        const booking = await Booking.findById(req.params.bookingId)
+
+        if(!booking){
+            return res.send("Booking not found.")
+        }
+
+        if(
+            booking.photographer.toString() !== req.session.user._id.toString()){
+                return res.send("You can only manage your own bookings.")
+            }
+
+        await Booking.findByIdAndUpdate(
+            req.params.bookingId,
+            {
+                status: "Rejected"
+            }
+        )
+
+        res.redirect("/bookings/requests")
+        
+
+    }catch(error){
+        console.log(error)
+        res.send("Could not reject booking.")
+    }
+
+})
 module.exports = router

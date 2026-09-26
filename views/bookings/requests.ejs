@@ -40,6 +40,24 @@
                 <strong>Status:</strong>
                 <%= booking.status %>
             </p>
+
+            <% if(booking.status === "Pending"){ %>
+
+                <form action="/bookings/<%= booking._id %>/accept?_method=PUT" method="POST">
+
+                    <button type="submit">
+                        Accept
+                    </button>
+                </form>
+
+                <form action="/bookings/<%= booking._id %>/reject?_method=PUT" method="POST">
+
+                    <button type="submit">
+                        Reject
+                    </button>
+                </form>
+
+                <% } %>
         </div>
 
         <hr>
