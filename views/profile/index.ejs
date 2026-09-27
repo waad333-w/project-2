@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+</head>
+<body>
+    <%- include("../partials/navbar") %>
+
+    <h1>My Profile</h1>
+
+    <% if(profileUser.profilePic){ %>
+
+        <img
+        src="<%= profileUser.profilePic %>"
+        alt="Profile Picture"
+        width="150"
+        >
+    <% } %>
+
+
+    <h2><%= profileUser.username %></h2>
+
+    <p>
+        <strong>Account Type:</strong>
+        <%= profileUser.role %>
+    </p>
+
+    <p>
+        <strong>Bio:</strong>
+        <%= profileUser.bio || "No bio yet." %>
+    </p>
+
+    <% if(profileUser.role === "photographer"){%>
+
+    <p>
+        <strong>Photography Style:</strong>
+        <%= profileUser.style || "No style added yet." %>
+    </p>
+
+    <% } %>
+
+            <form action="/profile/edit" method="GET">
+                <button type="submit">
+                    Edit Profile
+                </button>
+            </form>
+        
+
+
+</body>
+</html>

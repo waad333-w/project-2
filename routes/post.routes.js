@@ -4,6 +4,34 @@ const router = express.Router()
 
 const Post = require("../models/Post.js")
 
+router.get("/",async(req,res)=>{
+
+    if(!req.session.user){
+        return res.redirect("/auth/sign-in")
+    }
+
+    if(req.session.user.role !== "photographer"){
+        return res.send("Only photographers can view their portfolio.")
+    }
+
+
+    try{
+        const posts = await Post.find({
+            photographer: req.session.user._id
+        })
+
+        res.render("posts/index.ejs",{
+            posts:posts 
+        })
+
+    }catch(error){
+        console.log(error)
+        res.send("Could not load portfolio")
+    }
+})
+
+
+
 router.get("/new",(req,res)=>{
 
     if(!req.session.user){

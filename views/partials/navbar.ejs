@@ -4,11 +4,19 @@
     <% if (user){ %>
     <a href="/profile">My Profile</a>
     <a href="/photographers">Photographers</a>
+
     <% if(user.role === "photographer"){ %>
+        <a href="/posts">
+            My Portfolio
+        </a>
+
         <a href="/bookings/requests">
             Booking Requests
         </a>
+
         <% } %>
+
+        
 
         <% if(user.role === "user"){ %>
 
@@ -17,7 +25,7 @@
             </a>
 
             <% } %>
-            
+
     <a href="/auth/sign-out">Logout</a>
 
 

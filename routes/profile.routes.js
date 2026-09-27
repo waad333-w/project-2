@@ -3,7 +3,6 @@ const router = express.Router()
 
 
 const User = require("../models/User.js")
-const Post = require("../models/Post.js")
 
 
 router.get("/", async (req, res) => {
@@ -21,13 +20,8 @@ router.get("/", async (req, res) => {
             return res.send("User not found.")
         }
 
-        const posts = await Post.find({
-            photographer: req.session.user._id
-        })
-
-        res.render("profile/edit.ejs", {
-            profileUser: user,
-            posts:posts
+        res.render("profile/index.ejs", {
+            profileUser: user
         })
     }
 
