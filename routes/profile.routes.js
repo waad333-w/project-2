@@ -3,7 +3,7 @@ const router = express.Router()
 
 
 const User = require("../models/User.js")
-
+const Post = require("../models/Post.js")
 
 router.get("/", async (req, res) => {
 
@@ -28,6 +28,33 @@ router.get("/", async (req, res) => {
     catch (error) {
         console.log(error)
         res.send("Could not load profile.")
+    }
+})
+
+router.get("/edit",async(req,res)=>{
+
+    if(!req.session.user){
+        return res.redirect("/auth/sign-in")
+    }
+
+    try{
+
+        const user = await User.findById(
+            req.session.user._id
+        )
+
+        if(!user){
+            return res.send("User not found.")
+        }
+
+        res.render("profile/edit.ejs",{
+            profileUser:user
+        })
+
+    }catch (error){
+
+        console.log(error)
+        res.send("Could not load edit profile.")
     }
 })
 
