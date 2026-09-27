@@ -31,9 +31,12 @@
         <%= photographer.bio || "No bio yet." %>
     </p>
 
-    <a href="/profile/<%= photographer._id %>">
-        View Profile
-    </a>
+        <form action="/profile/<%= photographer._id %>" method="GET">
+
+                <button type="submit">
+                    View Profile
+                </button>
+            </form>
 
         </div>
 
