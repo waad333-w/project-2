@@ -63,7 +63,7 @@ router.post("/",async(req,res)=>{
             caption: req.body.caption
         })
 
-        res.redirect("/profile")
+        res.redirect("/posts")
     
     }catch (error){
         console.log(error)
@@ -127,7 +127,7 @@ router.put("/:postId",async(req,res)=>{
                 caption: req.body.caption
             }
         )
-        res.redirect("/profile")
+        res.redirect("/posts")
 
     }catch(error){
         console.log(error)
@@ -157,7 +157,7 @@ router.delete("/:postId",async(req,res)=>{
 
         await Post.findByIdAndDelete(req.params.postId)
 
-        res.redirect("/profile")
+        res.redirect("/posts")
 
     }catch(error){
         console.log(error)

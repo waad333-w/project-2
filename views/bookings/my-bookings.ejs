@@ -22,10 +22,12 @@
 
             <div>
 
-                <h2>
-                    Photographer:
+                <h2>Your Booking</h2>
+
+                <p>
+                    <strong>Photographer:</strong>
                     <%= booking.photographer.username %>
-                </h2>
+                </p>
 
                 <p>
                     <strong>Date:</strong>
@@ -37,10 +39,41 @@
                     <%= booking.message || "No message." %>
                 </p>
 
+                <h3>Status:</h3>
+
+                <% if(booking.status === "Pending"){ %>
+
                 <p>
-                    <strong>Status:</strong>
-                    <%= booking.status %>
+                    🟡<strong>Status:</strong>
                 </p>
+
+                <p>
+                    Waiting for photographer to respond.
+                </p>
+
+                <% } else if(booking.status === "Accepted"){ %>
+
+                <p>
+                    🟢<strong>Accepted</strong>
+                </p>
+
+                <p>
+                    Your photographer has accepted your booking!
+                </p>
+
+                <% } else if(booking.status === "Rejected"){ %>
+
+                <p>
+                    🔴<strong>Rejected</strong>
+                </p>
+
+                <p>
+                    This booking request was rejected.
+                </p>
+
+                <% } %>
+
+
             </div>
 
             <hr>
