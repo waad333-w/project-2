@@ -3,6 +3,8 @@ const router = express.Router()
 
 
 const Post = require("../models/Post.js")
+const upload = require("../middleware/upload.js")
+
 
 router.get("/",async(req,res)=>{
 
@@ -46,7 +48,7 @@ router.get("/new",(req,res)=>{
 })
 
 
-router.post("/",async(req,res)=>{
+router.post("/", upload.single("image"),async(req,res)=>{
 
     if(!req.session.user){
         return res.redirect("/auth/sign-in")
@@ -59,7 +61,7 @@ router.post("/",async(req,res)=>{
     try{
         await Post.create({
             photographer: req.session.user._id,
-            image: req.body.image,
+            image: "/uploads/" + req.file.filename,
             caption: req.body.caption
         })
 
@@ -102,7 +104,7 @@ router.get("/:postId/edit",async(req,res)=>{
 })
 
 
-router.put("/:postId",async(req,res)=>{
+router.put("/:postId",upload.single("image"),async(req,res)=>{
 
     if(!req.session.user){
         return res.redirect("/auth/sign-in")
@@ -120,13 +122,19 @@ router.put("/:postId",async(req,res)=>{
             return res.send("You can only edit your own posts.")
         }
 
+        const updateData ={
+            caption: req.body.caption
+        }
+
+        if(req.file){
+            updateData.image = "/uploads" + req.file.filename
+        }
+
         await Post.findByIdAndUpdate(
             req.params.postId,
-            {
-                image: req.body.image,
-                caption: req.body.caption
-            }
+            updateData
         )
+
         res.redirect("/posts")
 
     }catch(error){

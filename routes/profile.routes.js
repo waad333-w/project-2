@@ -4,6 +4,7 @@ const router = express.Router()
 
 const User = require("../models/User.js")
 const Post = require("../models/Post.js")
+const upload = require("../middleware/upload.js")
 
 router.get("/", async (req, res) => {
 
@@ -59,21 +60,25 @@ router.get("/edit",async(req,res)=>{
 })
 
 
-router.put("/", async (req, res) => {
+router.put("/",upload.single("profilePic"), async (req, res) => {
 
     if (!req.session.user) {
         return res.redirect("/auth/sign-in")
     }
 
     try {
-        const user = await User.findByIdAndUpdate(
+        const updateData = {
+             bio: req.body.bio,
+            style: req.body.style
+        }
+
+        if(req.file){
+            updateData.profilePic = "/uploads/" + req.file.filename
+        }
+            await User.findByIdAndUpdate(
             req.session.user._id,
-            {
-                profilePic: req.body.profilePic,
-                bio: req.body.bio,
-                style: req.body.style
-            }
-        )
+            updateData
+            )
 
         res.redirect("/profile")
 

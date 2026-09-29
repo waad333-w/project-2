@@ -11,7 +11,12 @@
     <main class="page">
 
 
-    <form action="/posts" method="POST" class="form">
+    <form 
+     action="/posts"
+     method="POST"
+     class="form"
+     enctype="multipart/form-data"
+     >
 
         <h1>Create New Post</h1>
 
@@ -21,9 +26,10 @@
         </label>
 
         <input
-        type="text"
+        type="file"
         name="image"
         id="image"
+        accept="/image/*"
         required
         >
 

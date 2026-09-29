@@ -12,20 +12,24 @@
 
 
 
-    <form action="/posts/<%= post._id %>?_method=PUT" method="POST" class="form">
+    <form
+     action="/posts/<%= post._id %>?_method=PUT"
+     method="POST"
+     class="form"
+     enctype="multipart/form-data"
+     >
 
         <h1>Edit Post</h1>
 
         <label for="image">
-            Image URL:
+            Change Photo:
         </label>
 
         <input
-        type="text"
+        type="file"
         name="image"
         id="image"
-        value="<%= post.image %>"
-        required
+       ]accept="image/*"
         >
 
 
