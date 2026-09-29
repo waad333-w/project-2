@@ -1,33 +1,28 @@
+<link rel="stylesheet" href="/css/style.css">
 <nav>
     
-    <a href="/">Homepage</a>
+    <a href="/" class="logo"> LENS </a>
+    <a href="/"> Home </a>
+
     <% if (user){ %>
     <a href="/profile">My Profile</a>
     <a href="/photographers">Photographers</a>
 
     <% if(user.role === "photographer"){ %>
-        <a href="/posts">
-            My Portfolio
-        </a>
+    <a href="/posts"> My Portfolio </a>
+    <a href="/bookings/requests"> Booking Requests </a>
 
-        <a href="/bookings/requests">
-            Booking Requests
-        </a>
-
-        <% } %>
+    <% } %>
 
         
+    <% if(user.role === "user"){ %>
 
-        <% if(user.role === "user"){ %>
+    <a href="/bookings/my-bookings">My Bookings </a>
 
-            <a href="/bookings/my-bookings">
-                My Bookings
-            </a>
+    <% } %>
 
-            <% } %>
 
-    <a href="/auth/sign-out">Logout</a>
-
+    <a href="/auth/sign-out" class="button">Logout</a>
 
     <% } else{ %>
     <a href="/auth/sign-up">Sign up</a>

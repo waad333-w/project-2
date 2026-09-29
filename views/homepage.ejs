@@ -3,12 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>LENS | Photography Platform</title>
 </head>
 <body>
     <%- include('./partials/navbar') %>
 
-    <h1>Welcome to my Website</h1>
+<section class="home">
+    <div class="home-content">
+        <p class="home-small">
+            LENS PHOTOGRAPHY PLATFORM
+        </p>
+        <h1> Find the right photographer for your moment.</h1>
+        <p class="home-text">
+            Discover photographers, explore their work,
+            and book the person who fits your vision.
+        </p>
+        <a href="/photographers" class="button">
+            Explore Photographers
+        </a>
+    </div>
+
+</section>
+
+
+<section class="home-section light">
+
+    <h2>Discover Photographers</h2>
+    <p>
+        Explore photographers and find someone whose 
+        style matches what you are looking for.
+    </p>
+
+    <% if(!photographers || photographers.length === 0) {%>
+        <div class="empty">
+            <h2>No photographers yet</h2>
+            <p>
+                Photographers will appear here once they
+                create an account.
+            </p>
+        </div>
+
+        <% } else { %>
+
+            <div class="cards">
+                <% photographers.slice(0,6).forEach((photographer)=>{ %>
+                    <div class="card">
+
+                        <% if(photographer.profilePic){ %>
+
+                            <img
+                            src="<%= photographer.profilePic %>"
+                            alt="<%= photographer.username %>"
+                            class="photographer-image"
+                            >
+
+                        <% } else {  %>
+
+                            <div class="photographer-placeholder">
+
+                            <span>
+                                <%= photographer.username 
+                                .charAt(0)
+                                .toUpperCase()
+                                %> 
+                                </span>
+                            </div>
+                    <% } %>
+
+                  <p class="small-text">PHOTOGRAPHER</p>
+                  <h3><%= photographer.username %></h3>
+                  <p><%= photographer.style || "Photography professional" %></p>
+                  <p><%= photographer.bio || "No bio added yet." %></p>
+                  <a href="/profile/<%= photographer._id %>" class="button button-outline">
+                    View Profile 
+                  </a>
+            </div>
+            <% }) %>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="/photographers" class="button">View All Photographers</a>
+        </div>
+
+        <% } %>
+</section>
+
+
+<section class="home-section">
+    <p class="home-small">
+        SIMPLE PROCESS
+    </p>
+    <h2>
+        How LENS works
+    </h2>
+
+    <div class="steps">
+
+        <div class="step">
+        <div class="step-number">
+            01
+        </div>
+        <h3>Discover</h3>
+
+        <p>
+            Browse photographers and explore
+            their profiles.
+        </p>
+        </div>
+
+
+    <div class="step">
+        <div class="step-number">
+            02
+        </div>
+        <h3>Choose</h3>
+        <p>
+            find a photographer whose style 
+            matches your needs.
+        </p>
+       </div>
+
+
+    <div class="step">
+        <div class="step-number">
+            03
+        </div>
+        <h3>Book</h3>
+        <p>
+            send a booking request and arrange
+            your photography session.
+        </p>
+       </div>
     
+</div>
+</section>
+
+<section class="home-end">
+    <p class="home-small">
+        YOUR MOMENT STARTS HERE
+    </p>
+    <h2>Ready to find your photographer?</h2>
+    <a href="/photographers" class="button button-light">
+        Explore LENS
+    </a>
+</section>
+
 </body>
 </html>

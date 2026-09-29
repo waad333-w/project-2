@@ -2,9 +2,25 @@ const router = require("express").Router()
 const User = require("../models/User.js")
 
 
-router.get('/',(req,res)=>{
-    res.render('homepage.ejs')
+router.get('/', async (req,res)=>{
+
+    try{
+
+        const photographers = await User.find({
+            role: "photographer"
+        })
+
+        res.render("homepage.ejs",{
+            photographers:photographers
+        })
+
+    }catch(error){
+        console.log(error)
+        res.send("Could not load homepage.")
+    }
 })
+
+
 
 router.get("/photographers",async(req,res)=>{
     try{

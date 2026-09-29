@@ -3,23 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Requests</title>
+    <title>Booking Requests | LENS</title>
 </head>
 <body>
     <%- include("../partials/navbar") %>
 
-    <h1>Booking Requests</h1>
+    <main class="page">
+
+    <h1 class="page-title">Booking Requests</h1>
+
+    <p class="page-text">
+        Manage booking requests from users.
+    </p>
 
     <% if(bookings.length === 0){ %>
 
+        <div class="empty">
+
+        <h2>
+            No booking requests
+        </h2>
+
         <p>
-            You have no booking requests.
+            New booking requests will appear here.
         </p>
+
+        </div>
+
         <% } %>
 
     <% bookings.forEach((booking)=>{ %>
 
-        <div>
+        <div class="booking">
 
             <h2>
                 Request from:
@@ -38,31 +53,37 @@
 
             <p>
                 <strong>Status:</strong>
-                <%= booking.status %>
+            
+
+             <span class="status <%= booking.status.toLowerCase() %>">
+                    <%= booking.status %>
+                </span>
             </p>
+
 
             <% if(booking.status === "Pending"){ %>
 
+                <div class="buttons">
+
                 <form action="/bookings/<%= booking._id %>/accept?_method=PUT" method="POST">
 
-                    <button type="submit">
+                    <button type="submit" class="button">
                         Accept
                     </button>
                 </form>
 
                 <form action="/bookings/<%= booking._id %>/reject?_method=PUT" method="POST">
 
-                    <button type="submit">
+                    <button type="submit" class="button button-outline">
                         Reject
                     </button>
                 </form>
-
+                </div>
                 <% } %>
         </div>
 
-        <hr>
-
         <% }) %>
+    </main>
 
 </body>
 </html>

@@ -3,46 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photographers</title>
+    <title>Photographers | LENS</title>
 </head>
 <body>
     <%- include("../partials/navbar") %>
 
-    <h1>Photographers</h1>
-    <% photographers.forEach((photographer)=>{ %>
+    <main class="page">
 
-        <div>
-            <% if(photographer.profilePic){ %>
+    <h1 class="page-title">Photographers</h1>
+    <p class="page-text">
+        Explore photographers and find the right style 
+        for your moment.
+    </p>
 
-                <img
-                src="<%= photographer.profilePic %>"
-                alt="Profile Picture"
-                width="100"
-                >
-            <% } %>
+    <% if(photographers.length === 0){ %>
+        <div class="empty">
+
+            <h2>
+                No photographers yet
+            </h2>
+
+            <p>
+                Check back when photographers join LENS.
+            </p>
+        </div>
+
+    <% } else { %>
+
+        <div class="cards">
+        <% photographers.forEach((photographer)=>{ %>
+
+        <div class="card">
+        <% if(photographer.profilePic){ %>
+
+            <img
+            src="<%= photographer.profilePic %>"
+            alt="<%= photographer.username %>"
+            class="photographer-image"
+            >
+
+        <% }else{%>
+        <div class="photographer-placeholder">
+                
+
+        <span> 
+        <%= photographer.username
+        .charAt(0)
+        .toUpperCase()
+        %>
+        </span>
+
+      </div>
+
+    <% } %>
+
+    <p class="small-text">PHOTOGRAPHER</p>
 
     <h2><%= photographer.username %></h2>
 
+
     <p>
-        <%= photographer.style || "Photography style not added yet." %>
+        <%= photographer.style || "Photography professional" %>
     </p>
 
     <p>
-        <%= photographer.bio || "No bio yet." %>
+        <%= photographer.bio || "No bio added yet." %>
     </p>
 
-        <form action="/profile/<%= photographer._id %>" method="GET">
-
-                <button type="submit">
-                    View Profile
-                </button>
-            </form>
-
-        </div>
-
-        <hr>
+        <a href="/profile/<%= photographer._id %>" class="button">
+            View Profile
+        </a>
+    </div>
 
     <% }) %>
+    </div>
+
+    <% } %>
+
+    </main>
 
 </body>
 </html>

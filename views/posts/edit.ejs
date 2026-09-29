@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Post</title>
+    <title>Edit Post | LENS</title>
 </head>
 <body>
     <%- include('../partials/navbar') %>
 
-    <h1>Edit Post</h1>
+    <main class="page">
 
-    <form action="/posts/<%= post._id %>?_method=PUT" method="POST">
+
+
+    <form action="/posts/<%= post._id %>?_method=PUT" method="POST" class="form">
+
+        <h1>Edit Post</h1>
 
         <label for="image">
             Image URL:
@@ -24,7 +28,6 @@
         required
         >
 
-        <br><br>
 
         <label for="caption">
             Caption:
@@ -33,15 +36,13 @@
         <textarea
         name="caption"
         id="caption"
-        rows="5"
-        cols="40"
         ><%= post.caption %></textarea>
 
-        <br><br>
 
-        <button type="submit">
+        <button type="submit" class="button">
             Update Post
         </button>
     </form>
+    </main>
 </body>
 </html>

@@ -4,62 +4,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile</title>
+    <title>Edit Profile | LENS</title>
 </head>
 
 <body>
     <%- include("../partials/navbar") %>
 
-        <h1>Edit Profile</h1>
+    <main class="page">
 
 
-        <form action="/profile?_method=PUT" method="POST">
+        <form action="/profile?_method=PUT" method="POST" class="form">
+
+            <h1>Edit Profile</h1>
+
+           
 
             <label for="profilePic">
-                Profile Picture URL:
+                Profile Picture URL
             </label>
 
             <input type="text" name="profilePic" id="profilePic" value="<%= profileUser.profilePic %>">
 
-            <br><br>
 
             <label for="bio">
-                Bio:
+                Bio
             </label>
 
-            <br>
+            
 
-            <textarea name="bio" id="bio" rows="2" cols="40"><%= profileUser.bio %></textarea>
+            <textarea name="bio" id="bio"><%= profileUser.bio %></textarea>
 
-            <br><br>
 
             <% if(profileUser.role==="photographer" ){ %>
 
                 <label for="style">
-                    Photography Style:
+                    Photography Style
                 </label>
 
                 <input type="text" name="style" id="style" value="<%= profileUser.style %>">
 
-                <br><br>
 
                 <% } %>
 
-                    <button type="submit">
+                    <button type="submit" class="button">
                         Save Profile
                     </button>
+
+                    <a href="/profile" class="button-outline">
+                        Cancel
+                    </a>
         </form>
 
+        </main>
 
-        <br>
 
 
-        <form action="/profile" method="GET">
-
-            <button type="submit">
-                Cancel
-            </button>
-        </form>
 
 </body>
 

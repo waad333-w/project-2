@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photographer Profile</title>
+    <title><%= photographer.username %> Profile | LENS</title>
 </head>
 <body>
     <%- include("../partials/navbar") %>
 
-    <h1>Photographer Profile</h1>
+    <main class="page">
+
+    <div class="profile">
+
 
     <% if(photographer.profilePic){ %>
 
         <img
         src="<%= photographer.profilePic %>"
         alt="Profile Picture"
-        width="150"
+        class="profile-image"
         >
     <% } %>
 
 
-    <h2><%= photographer.username %></h2>
+    <h1><%= photographer.username %></h1>
 
     <p>
         <strong>Account Type:</strong>
@@ -37,23 +40,48 @@
         <%= photographer.style || "No style added yet." %>
     </p>
 
-    <h2>Portfolio</h2>
+    <% if(user && user.role === "user"){ %>
+
+    <a 
+    href="/bookings/new/<%= photographer._id %>" class="button">
+    Book photographer
+    </a>
+
+    <% } %>
+
+    </div>
+
+    <br>
+
+
+    <h1 class="page-title">Portfolio</h1>
 
     <% if(posts.length === 0){%>
 
-        <p>
+        <div class="empty">
+
+        <h2>
             No posts yet.
+        </h2>
+
+        <p>
+            This photographer has not added any 
+            photography posts yet.
         </p>
-    <% } %>
+
+        </div>
+
+    <% } else { %>
+   
 
     <% posts.forEach((post)=>{ %>
 
-        <div>
+        <div class="post">
 
             <img 
             src="<%= post.image %>"
             alt="Photography"
-            width="300"
+            class="post-image"
             >
 
             <p>
@@ -63,21 +91,10 @@
         
         </div>
 
-        <hr>
+        
     <% }) %>
+    <% } %>
 
-    <% if(user && user.role === "user"){ %>
-
-        <h2>Book This Photographer</h2>
-
-             <form action="/bookings/new/<%= photographer._id %>" method="GET">
-
-                <button type="submit">
-                    Book Photographer
-                </button>
-            </form>
-
-        <% } %>
-
+    </main>
 </body>
 </html>

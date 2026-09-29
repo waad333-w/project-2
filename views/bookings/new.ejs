@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Photographer</title>
+    <title>Book Photographer | LENS</title>
 </head>
 <body>
     <%- include("../partials/navbar") %>
 
+    <main class="page">
 
-    <h1>Book <%= photographer.username %></h1>
 
-    <form action="/bookings" method="POST">
+
+    <form action="/bookings" method="POST" class="form">
+
+        <h1>Book <%= photographer.username %></h1>
+
 
         <input
         type="hidden"
@@ -30,27 +34,23 @@
         required
         >
 
-        <br><br>
 
         <label for="message">
             Message:
         </label>
 
-        <br>
 
         <textarea
         name="message"
         id="message"
-        rows="5"
-        cols="40"
-        placeholder="Tell the photographerabout your bokking...">
+        placeholder="Tell the photographerabout your booking...">
         </textarea>
 
-        <br><br>
 
-        <button type="submit">
+        <button type="submit" class="button">
             Send Booking Request
         </button>
     </form>
+    </main>
 </body>
 </html>

@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
+    <title>My Profile | LENS</title>
 </head>
 <body>
     <%- include("../partials/navbar") %>
 
-    <h1>My Profile</h1>
+    <main class="page">
+        
+    <div class="profile">
+
 
     <% if(profileUser.profilePic){ %>
 
         <img
         src="<%= profileUser.profilePic %>"
         alt="Profile Picture"
-        width="150"
+        class="profile-image"
         >
     <% } %>
 
 
-    <h2><%= profileUser.username %></h2>
+    <h1><%= profileUser.username %></h1>
 
     <p>
         <strong>Account Type:</strong>
@@ -41,12 +44,13 @@
 
     <% } %>
 
-            <form action="/profile/edit" method="GET">
-                <button type="submit">
-                    Edit Profile
-                </button>
-            </form>
+           <a href="/profile/edit" class="button">
+            Edit Profile
+           </a>
         
+
+    </div>
+    </main>
 
 
 </body>
