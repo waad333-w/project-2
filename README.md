@@ -8,19 +8,19 @@ LENS is a photography platform where users can discover photographers, explore t
 
 ### Home Page
 
-![Home Page](screenshots/home.png)
+<img width="1901" height="861" alt="image" src="https://github.com/user-attachments/assets/1726162f-5018-4863-92de-b4e08f57213d" />
 
 ### Photographers
 
-![Photographers](screenshots/photographers.png)
+<img width="1892" height="856" alt="image" src="https://github.com/user-attachments/assets/0feb1023-971f-43c9-b32b-c203d02b03a4" />
 
 ### Photographer Profile
 
-![Photographer Profile](screenshots/profile.png)
+<img width="1887" height="813" alt="image" src="https://github.com/user-attachments/assets/2b3680f4-87ab-462b-8fe6-b6563fc11739" />
 
 ### Booking Requests
 
-![Booking Requests](screenshots/bookings.png)
+<img width="1891" height="836" alt="image" src="https://github.com/user-attachments/assets/208951fa-d080-4478-8eca-f6a34b60c573" />
 
 ## Technologies Used
 
@@ -115,7 +115,7 @@ Stores booking requests between users and photographers, including the date, mes
 
 ### ERD
 
-![LENS ERD](./public/images/erd.png)
+<img width="812" height="521" alt="image" src="https://github.com/user-attachments/assets/95c5cc17-ea74-4d1b-8cb1-189327a0cb33" />
 
 ## Routes
 
